@@ -1,4 +1,4 @@
-<div id="app">
+<!-- <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">bezKoder</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
@@ -38,4 +38,97 @@
   <div class="container">
     <router-outlet></router-outlet>
   </div>
+</div> -->
+<!-- <mat-toolbar color="primary">
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon> 
+    <img src="../assets/logo.png" width="42"> DA
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  <div *ngIf="sidenav.opened">
+    <img src="../assets/logo.png" width="42">
+    <span> Department of Agriculture </span> 
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </div>
+
+</mat-toolbar> 
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <sidebar-cmp></sidebar-cmp>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+      <router-outlet name="aux"></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<div> 
+  <mat-toolbar color="primary">
+    <div fxShow="true" fxHide.gt-sm="true">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <img src="../assets/logo.png" width="42">
+    <a mat-button class="companyName" routerLink="/">
+      <span>Department of Agriculture</span>
+    </a>
+    <span class="example-spacer"></span>
+    <div fxShow="true" fxHide.lt-md="true">
+      <a *ngIf="showAdminBoard" mat-button routerLink="/admin">Admin Board</a>
+      <a *ngIf="showAdminBoard" mat-button routerLink="/flights">Flight</a>
+      <a *ngIf="showModeratorBoard" mat-button routerLink="/mod">Moderator Board</a>
+      <a *ngIf="isLoggedIn" mat-button routerLink="/user">User</a>
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/register">Register</a>
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
+      
+      <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu"> <mat-icon>face</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item  routerLink="/profile">Hi {{username}}!</button>
+            <button mat-menu-item (click)="logout()"> Logout</button>
+          </mat-menu>
+      
+    </div>
+
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill class="example-container">
+
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
+      <a *ngIf="showAdminBoard" mat-button routerLink="/admin">Admin Board</a>
+      <a *ngIf="showAdminBoard" mat-button routerLink="/flights">Flight</a>
+      <a *ngIf="showModeratorBoard" mat-button routerLink="/mod">Moderator Board</a>
+      <a *ngIf="isLoggedIn" mat-button routerLink="/user">User</a>
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/register">Register</a>
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
+      
+      <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu"> <mat-icon>face</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item  routerLink="/profile">Hi {{username}}!</button>
+            <button mat-menu-item (click)="logout()"> Logout</button>
+          </mat-menu>
+      </div>
+  
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+        <router-outlet name="aux"></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

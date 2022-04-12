@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -16,14 +17,19 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  signUpForm: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    username: new FormControl('', [Validators.required])
+  });
 
-  ngOnInit(): void {
+
+  get f(){
+    return this.signUpForm.controls;
   }
-
-  onSubmit(): void {
-    const { username, email, password } = this.form;
-
+   
+  submit(){
+    const { username, password, email } = this.signUpForm.value;
     this.authService.register(username, email, password).subscribe({
       next: data => {
         console.log(data);
@@ -36,4 +42,11 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
+  constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
+  }
+
+  
+ 
 }

@@ -1,0 +1,19 @@
+
+<h2>Flight Detail</h2>
+<form *ngIf="flight" #editForm="ngForm" (ngSubmit)="save2()">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="flight.title" id="title" name="title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="flight.description" id="description" name="description">
+  </mat-form-field>
+
+
+  <div class="button-row" role="group">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!editForm.form.valid">Save</button>
+    <button type="button" mat-button color="accent" (click)="cancel()">Cancel</button>
+  </div>
+</form>

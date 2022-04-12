@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenStorageService } from './_services/token-storage.service';
+
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,9 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+
+  constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
+
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -31,6 +35,8 @@ export class AppComponent {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 }
