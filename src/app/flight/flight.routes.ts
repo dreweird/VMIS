@@ -4,11 +4,11 @@ import { FlightEditComponent } from './flight-edit/flight-edit.component';
 
 export const FLIGHT_ROUTES: Routes = [
   {
-    path: 'flights',
+    path: 'driver',
     component: FlightListComponent
   },
   {
-    path: 'flights/:id',
+    path: 'driver/:id',
     component: FlightEditComponent
   }
 ];

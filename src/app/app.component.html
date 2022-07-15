@@ -95,7 +95,13 @@
       <a *ngIf="isLoggedIn" mat-button routerLink="/user">User</a>
       <a *ngIf="!isLoggedIn" mat-button routerLink="/register">Register</a>
       <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
-      
+      <button *ngIf="showAdminBoard" mat-button [matMenuTriggerFor]="menu_crud">CRUD</button>
+      <mat-menu #menu_crud="matMenu">
+        <button mat-menu-item  routerLink="/vehicle">Vehicle</button>
+        <button mat-menu-item routerLink="/driver"> Driver</button>
+        <button mat-menu-item routerLink="/fuel"> Fuel</button>
+        <button mat-menu-item routerLink="/req"> Requisitioning</button>
+      </mat-menu>
       <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu"> <mat-icon>face</mat-icon></button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item  routerLink="/profile">Hi {{username}}!</button>
@@ -115,6 +121,14 @@
       <a *ngIf="isLoggedIn" mat-button routerLink="/user">User</a>
       <a *ngIf="!isLoggedIn" mat-button routerLink="/register">Register</a>
       <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
+
+      <button *ngIf="showAdminBoard" mat-button [matMenuTriggerFor]="menu_crud">CRUD</button>
+        <mat-menu #menu_crud="matMenu">
+          <button mat-menu-item  routerLink="/vehicle">Vehicle</button>
+        <button mat-menu-item routerLink="/driver"> Driver</button>
+        <button mat-menu-item routerLink="/fuel"> Fuel</button>
+        <button mat-menu-item routerLink="/req"> Requisitioning</button>
+        </mat-menu>
       
       <button *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="menu"> <mat-icon>face</mat-icon></button>
           <mat-menu #menu="matMenu">

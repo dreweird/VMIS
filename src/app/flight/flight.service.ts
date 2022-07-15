@@ -85,7 +85,7 @@ export class FlightService {
   }
   findByTitle(title: any): Observable<Flight[]> {
     // return this.http.get<Flight[]>(`${baseUrl}?title=${title}`);
-    return this.http.get<Flight[]>(`${baseUrl}/${title}`);
+    return this.http.get<Flight[]>(`${baseUrl}/search/${title}`);
   }
 }
 

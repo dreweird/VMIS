@@ -38,14 +38,13 @@ export class FlightEditComponent implements OnInit {
           return this.flightService.get(id);
         })
       )
-      .subscribe(flight => {
-        console.log(flight)
-          this.flight = flight;
+      .subscribe({
+        next: (res) => {
+          this.flight = res
         },
-        err => {
-          this._snackBar.open(err, "Warning");
-        }
-      );
+        error: (e) => this._snackBar.open(e, "Error")
+      })
+
   }
 
 
@@ -57,6 +56,7 @@ export class FlightEditComponent implements OnInit {
           console.log(res)
           this._snackBar.open("Update was successful", "Success", {duration: 3000});
           setTimeout(() => {
+            
             this.router.navigate(['/flights']);
           }, 1000);
         },
